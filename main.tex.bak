@@ -1,0 +1,163 @@
+
+\documentclass{article}
+
+\setlength{\oddsidemargin}{0.05 in}
+\setlength{\evensidemargin}{-0.05 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{9.5 in}
+\setlength{\headsep}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% ADD PACKAGES here:
+\usepackage [usenames] {color}
+\definecolor {infocolor} {rgb} {0.6,0.6,0.6}
+\definecolor {sepia} {rgb} {0.75,0.30,0.15}
+\everymath{\color{sepia}}
+\everydisplay{\color{sepia}}
+%
+
+\usepackage{amsmath,amsfonts,amssymb,enumerate,graphicx}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+\newcommand{\tran}{^{\mbox{\tiny $\top$}}}
+\newcommand{\tleq}{^{\mbox{\tiny $\leqslant$}}}
+\newcommand{\teq}{^{\mbox{\tiny $=$}}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[2]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+       \vbox{\vspace{2mm}
+         \hbox {\leftline{\Large LECTURE #1: \hfill}}
+         \vspace{3mm}
+         \hbox {\leftline{\Large #2 \hfill}}
+         \vspace{4mm}
+         \hrule
+         \vspace{3mm}
+         \hbox to 6.5in { {{\large Lecture Notes on combinatorics}  \hfill Mar. 2013} }
+         \vspace{3mm}
+        }
+   \end{center}
+   \markboth{LECTURE #1: #2}{LECTURE #1: #2}
+   \pagenumbering{arabic}
+   \vspace*{4mm}
+}
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\it Proof.}}{ \hfill $\square$}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\def\R{{\mathbb R}}
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+\lecture{11}{Equivalence of some theorems in combinatorics}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+% **** YOUR NOTES GO HERE:
+
+% Some general latex examples and examples making use of the
+% macros follow.
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+\textbf{Crossreference }
+
+Dilworth
+
+K\"{o}nig Theorem
+
+\section{Fast recap: the simplex method}
+
+
+
+\begin{theorem}[Dilworth's Theorem]
+The minimum number of chains into which the elements of a partially ordered set $P=(X,\prec)$ can be partitioned is equal to the maximum number of elements in an anti-chain of P.
+\end{theorem}
+
+partition = disjoint covering
+induction proof
+
+Dual of Dilworth’s Theorem
+
+
+Dilworth Theorem via K\"{o}nig Theorem
+
+\begin{proof}
+To prove Dilworth's theorem for a partially ordered set $P$ with $n$ elements, using K\"{o}nig's theorem, define a bipartite graph $G[U,V]$ where $U=V=X$ and where $(u,v)$ is an edge in $G$ when $u\prec v$ in $P$. 
+
+First, we show that any matching $M$ of $G[U,V]$ yields a chain partition of $P$. Let $Z$ be the family of chains formed by including $u$ and $v$ in the same chain whenever there is an edge $(u,v)$ in $M$. In particular, when $M=\emptyset$, each chain of $Z$ is a singleton element in $X$. Obviously, $Z$ is proper chain partition of $P$ and $\lvert Z\rvert=n-\lvert M\rvert$.
+
+Then we prove that any vertex cover $C$ gives rise to a anti-chain with $n-\lvert C \rvert$. Let $A$ be the set of elements of $X$ that are not in $C$. Clearly, $\lvert A \rvert=n-\lvert C \rvert$. Moreover, $A$ is an anti-chain, since an comparable pair in $A$ will lead to an edge of $G[U,V]$ uncovered by $C$.
+
+Since $\lvert M \rvert \leq \lvert C \rvert$, we have $n-\lvert C \rvert \leq n- \lvert M \rvert$. By K\"{o}nig's theorem, there are a maximum matching $M^*$ and minimum vertex cover $C^*$ in $G[U,V]$ such that $\lvert M^* \rvert = \lvert C^*\rvert$. So $n-\lvert C^* \rvert = n- \lvert M^* \rvert$.
+\end{proof}
+
+
+\section*{References}
+\beginrefs
+\bibentry{CW87}{\sc D.~Coppersmith} and {\sc S.~Winograd},
+``Matrix multiplication via arithmetic progressions,''
+{\it Proceedings of the 19th ACM Symposium on Theory of Computing},
+1987, pp.~1--6.
+\endrefs
+
+% **** THIS ENDS THE EXAMPLES. DON'T DELETE THE FOLLOWING LINE:
+
+\end{document}
+
+
+
+
+
+
+
